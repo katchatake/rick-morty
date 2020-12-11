@@ -1,4 +1,4 @@
-<template >
+<template>
   <div>
     <div class="container">
       <div class="mt-5">
@@ -31,11 +31,93 @@
               Origen: {{ character.origin.name }} <br />
             </b-card-text>
 
-            <b-button href="#" variant="primary">Go somewhere</b-button>
+            <b-button
+              href="#"
+              block
+              variant="outline-success"
+              size="lg"
+              @click="see(character)"
+              >Ver más</b-button
+            >
           </b-card>
         </b-col>
       </b-row>
     </div>
+    <b-modal id="modal-character" size="lg" hide-footer>
+      <div align="center">
+        <b-card no-body class="overflow-hidden" style="max-width: 750px">
+          <b-row no-gutters>
+            <b-col md="5">
+              <b-card-img
+                :src="character.image"
+                :alt="character.name"
+                class="rounded-0"
+              ></b-card-img>
+            </b-col>
+            <b-col md="7">
+              <b-card-body :title="character.name">
+                <b-card-text>
+                  <b-form-group
+                    label-cols-sm="2"
+                    label="Estatus"
+                    label-align-sm="center"
+                    label-for="nested-street"
+                  >
+                    <b-form-input
+                      disabled
+                      v-model="character.status"
+                    ></b-form-input>
+                  </b-form-group>
+                  <b-form-group
+                    label-cols-sm="2"
+                    label="Especie"
+                    label-align-sm="center"
+                    label-for="nested-street"
+                  >
+                    <b-form-input
+                      disabled
+                      v-model="character.species"
+                    ></b-form-input>
+                  </b-form-group>
+                  <b-form-group
+                    label-cols-sm="2"
+                    label="Tipo"
+                    label-align-sm="center"
+                    label-for="nested-street"
+                  >
+                    <b-form-input
+                      disabled
+                      v-model="character.type"
+                    ></b-form-input>
+                  </b-form-group>
+                  <b-form-group
+                    label-cols-sm="2"
+                    label="Genero"
+                    label-align-sm="center"
+                    label-for="nested-street"
+                  >
+                    <b-form-input
+                      disabled
+                      v-model="character.gender"
+                    ></b-form-input>
+                  </b-form-group>
+                  <b-button block variant="outline-primary"
+                    >Ver a detalle</b-button
+                  >
+                </b-card-text>
+              </b-card-body>
+            </b-col>
+          </b-row>
+        </b-card>
+      </div>
+      <b-button
+        class="mt-3"
+        variant="outline-danger"
+        block
+        @click="$bvModal.hide('modal-character')"
+        >Close Me</b-button
+      >
+    </b-modal>
   </div>
 </template>
 
@@ -48,6 +130,20 @@ export default {
       characters: [],
       infocharacters: [],
       currentPage: 1,
+      character: {
+        id: 0,
+        name: "",
+        status: "",
+        species: "",
+        type: "",
+        gender: "",
+        origin: {},
+        location: {},
+        image: "",
+        episode: {},
+        url: "",
+        created: "",
+      },
     };
   },
   created: function () {
@@ -55,6 +151,21 @@ export default {
   },
   computed: {},
   methods: {
+    see: function (character) {
+      this.character.id = character.id;
+      this.character.name = character.name;
+      this.character.status = character.status;
+      this.character.species = character.species;
+      this.character.type = character.type;
+      this.character.gender = character.gender;
+      this.character.origin = character.origin;
+      this.character.location = character.location;
+      this.character.image = character.image;
+      this.character.episode = character.episode;
+      this.character.url = character.url;
+      this.character.created = character.created;
+      this.$bvModal.show("modal-character");
+    },
     getCharacters: async function (currentPage) {
       try {
         this.characters = [];
