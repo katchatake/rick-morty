@@ -1,11 +1,11 @@
 <template>
-  <Character />
+  <CharacterByID />
 </template>
 
 <script>
-import Character from "@/components/CharacterComponent.vue";
+import CharacterByID from "@/components/CharacterComponent.vue";
 export default {
   name: "Character",
-  components: { Character },
+  components: { CharacterByID },
 };
 </script>

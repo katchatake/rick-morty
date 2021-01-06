@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Character from '@/views/Character';
+import Character from '../views/Character';
 
 Vue.use(VueRouter)
 
@@ -11,7 +11,7 @@ const routes = [{
         component: Home
     },
     {
-        path: '/character/$id',
+        path: '/character/:id',
         name: 'Character',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route

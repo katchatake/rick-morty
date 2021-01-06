@@ -101,9 +101,12 @@
                       v-model="character.gender"
                     ></b-form-input>
                   </b-form-group>
-                  <b-button block variant="outline-primary"
+                  <router-link :to="'/character/'+character.id">
+                  <b-button
+                    block variant="outline-primary"
                     >Ver a detalle</b-button
                   >
+                  </router-link>
                 </b-card-text>
               </b-card-body>
             </b-col>
@@ -115,7 +118,7 @@
         variant="outline-danger"
         block
         @click="$bvModal.hide('modal-character')"
-        >Close Me</b-button
+        >Cerrar</b-button
       >
     </b-modal>
   </div>
